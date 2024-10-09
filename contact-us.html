@@ -33,6 +33,24 @@
     />
     <script>
       const toggleMenuOpen = () => document.body.classList.toggle("open");
+
+
+
+      $( document ).on( "pageinit", "#demo-page", function() {
+    $( document ).on( "swipeleft swiperight", "#demo-page", function( e ) {
+        // We check if there is no open panel on the page because otherwise
+        // a swipe to close the left panel would also open the right panel (and v.v.).
+        // We do this by checking the data that the framework stores on the page element (panel: open).
+        if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+            if ( e.type === "swipeleft"  ) {
+                $( "#right-panel" ).panel( "open" );
+            } else if ( e.type === "swiperight" ) {
+                $( "#left-panel" ).panel( "open" );
+            }
+        }
+    });
+});
+
     </script>
     <style>
       button {
@@ -275,7 +293,7 @@
             <span class="circle one"></span>
             <span class="circle two"></span>
     
-            <form  action="https://formsubmit.co/mnafeel1234@gmail.com" method="POST" autocomplete="off">
+            <form  action="https://formsubmit.co/Asaad@foodfixx.co.uk" method="POST" autocomplete="off">
               <h3 class="title">Contact us</h3>
               <div class="input-container">
                 <input type="text" name="name" class="input" required />
@@ -716,4 +734,6 @@ inputs.forEach((input) => {
   input.addEventListener("blur", blurFunc);
 });
 
+
 </script>
+
